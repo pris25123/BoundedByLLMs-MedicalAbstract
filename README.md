@@ -27,7 +27,7 @@ The goal is to automatically structure medical literature, which is valuable for
 Each sample contains:
 
 * `text`: sentence from an abstract
-* `label`: rhetorical role
+* `labels`: rhetorical role
 
 ---
 
@@ -266,8 +266,8 @@ The system shows practical potential for real-world medical text processing.
 ---
 
 ## Contributors
-- [Priyanka S](https://github.com/YOUR_GITHUB_ID)
-- [Padarthi Neha Sai](https://github.com/HER_GITHUB_ID)
+- [Priyanka S](https://github.com/pris25123)
+- [Padarthi Neha Sai](https://github.com/pnehasai)
 
 
 
