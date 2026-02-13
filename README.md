@@ -245,7 +245,7 @@ The moderate confidence is reasonable and reflects the inherent ambiguity of the
 ##  Repository Structure
 
 ```
-├── notebook.ipynb
+├── BoundedByLLMs_MedicalAbstract.ipynb
 ├── bert_medical_classifier/
 ├── README.md
 ```
@@ -264,5 +264,10 @@ Despite dataset imbalance and subtle semantic differences between classes, the m
 The system shows practical potential for real-world medical text processing.
 
 ---
+
+## Contributors
+- [Priyanka S](https://github.com/YOUR_GITHUB_ID)
+- [Padarthi Neha Sai](https://github.com/HER_GITHUB_ID)
+
 
 
