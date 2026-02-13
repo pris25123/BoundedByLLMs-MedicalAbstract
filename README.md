@@ -1,7 +1,7 @@
 
-## Medical Abstract Classification with BERT (Transfer Learning)
+# Medical Abstract Classification with BERT (Transfer Learning)
 
-# Overview
+## Overview
 
 This project fine-tunes a BERT-based model for **medical abstract sentence classification**.
 Each sentence from a medical abstract is classified into one of five rhetorical roles:
@@ -16,7 +16,7 @@ The goal is to automatically structure medical literature, which is valuable for
 
 ---
 
-# Dataset
+## Dataset
 
 **Dataset:** PubMed 200k RCT (medical abstract classification)
 
@@ -142,7 +142,7 @@ These reflect real rhetorical similarities in abstracts.
 
 ---
 
-## 🧪 Inference Pipeline
+##  Inference Pipeline
 
 A custom `predict_text()` function:
 
@@ -159,6 +159,77 @@ Example:
 
 > “A randomized controlled trial was conducted…”
 > → METHODS (0.96 confidence)
+
+## Findings
+
+### Edge Case Analysis
+
+To better understand model behavior beyond aggregate metrics, we evaluated several challenging and ambiguous sentences. This helps assess how well the model generalizes to realistic and borderline cases.
+
+---
+
+### Very Confident and Correct Predictions
+
+#### 1. Background Sentence  
+**Confidence:** 0.85  
+
+The model correctly classified a general epidemiological statement as BACKGROUND.  
+Such broad contextual sentences are common in the introductory portion of medical abstracts, and the model appears to have learned these structural cues effectively.
+
+---
+
+#### 2. Methods Sentences  
+
+- RCT description → **0.9675**
+- Long structured methods sentence → **0.9102**
+
+The model performs exceptionally well on METHODS sentences.  
+Structured phrases such as "randomized controlled trial" and detailed procedural descriptions provide strong signals.  
+High confidence scores indicate that the model has successfully learned methodological language patterns.
+
+---
+
+#### 3. Clear Results  
+
+“Significant differences were observed.” → **0.8998**
+
+Despite being short, this sentence contains classic statistical outcome phrasing.  
+The high confidence suggests that the model effectively identifies characteristic results-oriented language.
+
+---
+
+#### 4. Strong Conclusion  
+
+“These findings indicate…” → **0.9902**
+
+This sentence was classified with near-perfect confidence.  
+Phrases that summarize findings or imply broader implications are strong indicators of the CONCLUSIONS section, and the model captures this reliably.
+
+---
+
+### Moderate Confidence Cases (Ambiguity Analysis)
+
+#### Objective Case  
+
+“We sought to investigate…”  
+**Prediction:** OBJECTIVE  
+**Confidence:** 0.569  
+
+Although the confidence is lower, the prediction is correct.  
+The OBJECTIVE class is both a minority class and semantically close to BACKGROUND.  
+The reduced confidence reflects the subtle boundary between contextual setup and stated research aims.  
+Importantly, the model still predicts correctly, suggesting that class-weighted training helped preserve minority-class performance.
+
+---
+
+#### Mixed Results and Conclusion Sentence  
+
+Confidence: **0.5194**
+
+This sentence combines outcome reporting (“reduced symptoms”) with interpretive language (“benefits remain uncertain”).  
+Such overlap naturally blurs the boundary between RESULTS and CONCLUSIONS.  
+
+The moderate confidence is reasonable and reflects the inherent ambiguity of the sentence. Rather than overconfidently misclassifying, the model demonstrates cautious behavior in a linguistically complex case.
 
 ---
 
